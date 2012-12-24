@@ -1,0 +1,9 @@
+/build
+/dist
+/MANIFEST
+/paysio.egg-info
+*.pyc
+*.egg
+.tox
+*.class
+.idea
