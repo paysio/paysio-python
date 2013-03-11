@@ -135,6 +135,10 @@ class EventClient(ListableAPIResourceClient):
     
     client_for = paysio.Event
 
+class PayoutClient(ListableAPIResourceClient):
+
+    client_for = paysio.Payout
+
 def main():
         klasses = {
                 'charge' : ChargeClient,
@@ -151,6 +155,8 @@ def main():
                 'events' : EventClient,
                 'log' : LogClient,
                 'logs' : LogClient,
+                'payout' : PayoutClient,
+                'payouts' : PayoutClient,
                 }
         parser = optparse.OptionParser("""%prog [options] class method [key=value|key ...]
 
@@ -193,6 +199,10 @@ coupon
     retrieve
     delete
     
+payout
+    all
+    create
+    retrieve
 log
     all
     retrieve

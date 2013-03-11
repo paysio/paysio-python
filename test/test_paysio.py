@@ -21,6 +21,13 @@ DUMMY_CHARGE = {
     'description': 'DUMMY_DISCRIPTION'
 }
 
+DUMMY_PAYOUT = {
+    'amount': '100',
+    'currency_id': 'usd',
+    'payment_system_id': 'test_phone_payout',
+    'wallet': {'account': '79999999999'}
+}
+
 DUMMY_COUPON = {
     'code': 'qwertymycoupon' + str(NOW),
     'percent_off': 25,
@@ -178,6 +185,18 @@ class CouponTest(PaysioTestCase):
         DUMMY_COUPON['code'] = 'qwertymycoupon' + str(datetime.datetime.now())
         c = paysio.Coupon.create(**DUMMY_COUPON)
         c.delete()
+
+class PayoutTest(PaysioTestCase):
+    def test_create_payout(self):
+        self.assertRaises(paysio.BadRequest, paysio.Payout.create, amount=100)
+        p = paysio.Payout.create(**DUMMY_PAYOUT)
+        self.assertTrue(isinstance(p, paysio.Payout))
+        self.assertEqual(DUMMY_PAYOUT['amount'], p.amount)
+        self.assertEqual(DUMMY_PAYOUT['currency_id'], p.currency_id)
+
+        p2 = paysio.Payout.retrieve(p.id)
+        self.assertEqual(p2.id, p.id)
+        self.assertEqual(p2.created, p.created)
 
 class InvalidRequestErrorTest(PaysioTestCase):
     def test_nonexistent_object(self):

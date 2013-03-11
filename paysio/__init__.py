@@ -141,7 +141,7 @@ class InternalError(PaysioError):
         self.json_body = json_body
 
 def convert_to_paysio_object(resp, api_key, headers=None):
-    types = { 'charge' : Charge, 'customer' : Customer, 'wallet': Wallet, 'reward': Reward, 'event': Event, 'list': ListObject, 'log': Log, 'coupon': Coupon,
+    types = { 'charge' : Charge, 'customer' : Customer, 'wallet': Wallet, 'reward': Reward, 'event': Event, 'list': ListObject, 'log': Log, 'payout': Payout, 'coupon': Coupon,
     }
 
     if isinstance(resp, list):
@@ -783,6 +783,9 @@ class Coupon(CreateableAPIResource, DeletableAPIResource, ListableAPIResource):
         response, api_key, headers = requestor.request('get', url, { })
         return convert_to_paysio_object(response, api_key, headers)
         pass
+    pass
+
+class Payout(CreateableAPIResource, ListableAPIResource):
     pass
 
 class Log(ListableAPIResource):
