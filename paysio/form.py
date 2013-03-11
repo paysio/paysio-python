@@ -83,4 +83,4 @@ class Form(object):
         return paysio.api_base.replace('api.', '') + 'static/v' + str(self._version)
         
     def set_errors(self, errors):
-        self._values = errors
+        self._errors = errors
