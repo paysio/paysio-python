@@ -419,7 +419,7 @@ class APIRequestor(object):
         if e[0] in [pycurl.E_COULDNT_CONNECT,
                                 pycurl.E_COULDNT_RESOLVE_HOST,
                                 pycurl.E_OPERATION_TIMEOUTED]:
-            msg = "Could not connect to Paysio (%s).    Please check your internet connection and try again.    If this problem persists, you should check Paysio's service status at https://twitter.com/paysiostatus, or let us know at support@paysio.com." % (api_base,)
+            msg = "Could not connect to Paysio (%s).    Please check your internet connection and try again.    If this problem persists, let us know at support@paysio.com." % (api_base,)
         elif e[0] == pycurl.E_SSL_CACERT or e[0] == pycurl.E_SSL_PEER_CERTIFICATE:
             msg = "Could not verify Paysio's SSL certificate.    Please make sure that your network is not intercepting certificates.    (Try going to %s in your browser.)    If this problem persists, let us know at support@paysio.com." % (api_base,)
         else:
